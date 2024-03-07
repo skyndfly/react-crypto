@@ -11,11 +11,13 @@ export default function AppLayout() {
     if (loading) {
         return (<Spin fullscreen/>);
     }
-    return <Container fluid px={0}>
-        <AppHeader/>
-        <Layout>
-            <AppSider/>
-            <AppContent/>
-        </Layout>
-    </Container>
+    return (
+        <Container fluid px={0}>
+            <AppHeader/>
+            <Layout>
+                <AppSider/>
+                <AppContent/>
+            </Layout>
+        </Container>
+    )
 }
