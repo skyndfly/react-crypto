@@ -27,7 +27,6 @@ export default function ImageSelect(){
             radius="md"
             width="target"
             withinPortal
-            className={cls.menu}
         >
             <Menu.Target>
                 <UnstyledButton className={cls.control} data-expanded={opened || undefined}>

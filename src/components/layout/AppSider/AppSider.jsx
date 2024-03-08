@@ -1,22 +1,19 @@
-import {Card, Layout, List, Statistic, Typography, Tag} from "antd";
+import {List, Statistic, Typography, Tag} from "antd";
 import React, {useContext} from "react";
 import {ArrowUpOutlined, ArrowDownOutlined} from "@ant-design/icons"
-import {capitalize} from '../../helpers.js';
-import CryptoContext from "../../context/crypto-context.jsx";
-
-const siderStyle = {
-    padding: 10
-};
+import {capitalize} from '../../../helpers.js';
+import CryptoContext from "../../../context/crypto-context.jsx";
+import {Card} from "@mantine/core";
+import cls from './AppSider.module.scss';
 
 
 export default function AppSider() {
     const {assets} = useContext(CryptoContext)
 
     return (
-        <Layout.Sider width="25%" style={siderStyle}>
+        <>
             {assets.map(asset => (
-
-                <Card key={asset.id} style={{marginBottom: 10}}>
+                <Card className={cls.card}  radius="md"  key={asset.id}>
                     <Statistic
                         title={capitalize(asset.id)}
                         value={asset.totalAmount}
@@ -38,10 +35,6 @@ export default function AppSider() {
                                 value: asset.amount,
                                 isPlain: true
                             }
-                            // {
-                            //     title: "Разница",
-                            //     value: asset.growPercent
-                            // }
                         ]}
                         renderItem={(item) => (
                             <List.Item>
@@ -60,6 +53,6 @@ export default function AppSider() {
                     />
                 </Card>
             ))}
-        </Layout.Sider>
+        </>
     );
 }
