@@ -5,6 +5,7 @@ import {useContext} from "react";
 import CryptoContext from "../../../../context/crypto-context.jsx";
 import {TablePercentCard} from '../TablePercentCard/TablePercentCard.jsx';
 
+
 export default function Stats() {
     const {assets} = useContext(CryptoContext)
     const stats = assets.map((stat) => {

@@ -17,10 +17,10 @@ export default function AppLayout() {
             <AppHeader/>
             <Container fluid className={cls.container}>
                 <Grid grow  >
-                    <Grid.Col span={3} px={0}>
+                    <Grid.Col span={2} px={0}>
                         <AppSider/>
                     </Grid.Col>
-                    <Grid.Col span={9} px={0}>
+                    <Grid.Col span={10} px={0}>
                         <AppContent/>
                     </Grid.Col>
                 </Grid>
