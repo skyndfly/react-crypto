@@ -3,15 +3,19 @@ import cls from "./ImageSelect.module.scss";
 import {IconChevronDown} from "@tabler/icons-react";
 import React, {useEffect, useState} from "react";
 import {useCrypto} from "../../../../context/crypto-context.jsx";
+import CoinInfoModal from "../../../widgets/CoinInfoModal/CoinInfoModal.jsx";
+import {Button} from "../Button/Button.jsx";
 
 export default function ImageSelect() {
 
     const {crypto} = useCrypto();
     const [openModal, setModal] = useState(false);
+    const [coin, setCoin] = useState(null);
     const [opened, setOpened] = useState(false);
     const [selected, setSelected] = useState(crypto[0]);
 
     function handleSelect(val) {
+        setCoin(crypto.find((c) => c.id === val))
         setModal(true);
     }
 
@@ -30,7 +34,7 @@ export default function ImageSelect() {
             leftSection={<Image src={item.icon} width={18} height={18}/>}
             onClick={() => {
                 setSelected(item);
-                handleSelect(item.name);
+                handleSelect(item.id);
             }}
             key={item.name}
         >
@@ -57,8 +61,12 @@ export default function ImageSelect() {
                 </Menu.Target>
                 <Menu.Dropdown>{items}</Menu.Dropdown>
             </Menu>
-            <Modal opened={ openModal} onClose={() => setModal(false)} withCloseButton={false}>
-                Modal without header, press escape or click on overlay to close
+            <Modal opened={ openModal} onClose={() => setModal(false)} withCloseButton={true} title='Информация'>
+                <CoinInfoModal coin={coin} />
+                <Group justify='end'>
+                    <Button text="Закрыть" onclick={()=> setModal(false)} variant='outline'/>
+                    <Button text="Добавить" />
+                </Group>
             </Modal>
         </>
     );

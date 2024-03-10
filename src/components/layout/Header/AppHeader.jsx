@@ -2,7 +2,7 @@ import React from "react";
 import cls from './AppHeader.module.scss';
 import {Container, Group} from "@mantine/core";
 import ImageSelect from "../../shared/ui/ImageSelect/ImageSelect.jsx";
-import {Modal} from "../../shared/ui/Modal/Modal.jsx";
+import {AddCryptoModal} from "../../widgets/AddCryptoModal/AddCryptoModal.jsx";
 
 
 export default function AppHeader() {
@@ -12,7 +12,7 @@ export default function AppHeader() {
             <Container fluid px={0}>
                 <Group justify={'space-between'}>
                     <ImageSelect/>
-                    <Modal />
+                    <AddCryptoModal />
                 </Group>
             </Container>
         </header>

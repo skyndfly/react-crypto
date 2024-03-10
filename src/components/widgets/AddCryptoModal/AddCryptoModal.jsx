@@ -1,11 +1,11 @@
-import {Button} from "../Button/Button.jsx";
+import {Button} from "../../shared/ui/Button/Button.jsx";
 import { useDisclosure } from '@mantine/hooks';
 import {Group, Modal as ModalMantine} from '@mantine/core';
-export function Modal(){
+export function AddCryptoModal(){
     const [opened, { open, close }] = useDisclosure(false);
     return(
         <>
-            <ModalMantine opened={opened} onClose={close} title="Добавить криптовалюту" centered>
+            <ModalMantine opened={opened} onClose={close} title="Добавить криптовалюту">
 
                 <div>
                     <Group justify='end'>
