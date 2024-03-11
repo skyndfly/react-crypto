@@ -61,7 +61,7 @@ export default function ImageSelect() {
                 </Menu.Target>
                 <Menu.Dropdown>{items}</Menu.Dropdown>
             </Menu>
-            <Modal opened={ openModal} onClose={() => setModal(false)} withCloseButton={true} title='Информация'>
+            <Modal size={700} opened={ openModal} onClose={() => setModal(false)} withCloseButton={true} title='Информация'>
                 <CoinInfoModal coin={coin} />
                 <Group justify='end'>
                     <Button text="Закрыть" onclick={()=> setModal(false)} variant='outline'/>
