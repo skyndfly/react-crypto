@@ -5,9 +5,7 @@ import {IconBrandReddit, IconBrandTwitter, IconWorldWww} from "@tabler/icons-rea
 import {Button} from "../../shared/ui/Button/Button.jsx";
 
 export default function CoinInfoModal({coin}) {
-    const links = coin.explorers.map((link) => {
-        return `<a href="${link}">${link}</a>`;
-    })
+
     return (
         <>
             <Group gap={3} justify='space-between'>
@@ -57,7 +55,9 @@ export default function CoinInfoModal({coin}) {
                 </a>
             </Group>
             <div>
-                {links}
+                {coin.explorers.map((link) => {
+                    return `<a href="${link}">${link}</a>`;
+                })}
             </div>
         </>
     )
