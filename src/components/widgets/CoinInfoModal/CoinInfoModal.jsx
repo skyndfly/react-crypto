@@ -16,7 +16,6 @@ export default function CoinInfoModal({coin}) {
                 <Text className={cls.stats_text} size="xl">
                     <Badge variant="outline" size="lg" radius="sm" color={coin.price > 0 ? 'teal' : 'red'}>
                         <NumberFormatter  decimalScale={5} suffix=" $" value={coin.price} thousandSeparator/>
-
                     </Badge>
                 </Text>
             </Group>
@@ -56,7 +55,7 @@ export default function CoinInfoModal({coin}) {
             </Group>
             <div>
                 {coin.explorers.map((link) => {
-                    return `<a href="${link}">${link}</a>`;
+                    return <a className={cls.explorer} key={link} href={link}>{link}</a>;
                 })}
             </div>
         </>
