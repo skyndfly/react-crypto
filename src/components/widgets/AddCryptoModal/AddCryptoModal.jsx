@@ -1,16 +1,22 @@
-import {Divider, Group, Image, Menu, Title, UnstyledButton} from '@mantine/core';
+import {Divider, Group, Image, Menu, Title, UnstyledButton, NumberInput, Input} from '@mantine/core';
 import React, {useState} from "react";
 import cls from "./AddCryptoModal.module.scss";
 import {IconChevronDown} from "@tabler/icons-react";
 import {useCrypto} from "../../../context/crypto-context.jsx";
 import {Button} from "../../shared/ui/Button/Button.jsx";
-import {IconRepeat} from "@tabler/icons-react";
 
 export function AddCryptoModal() {
     const {crypto} = useCrypto();
     const [opened, setOpened] = useState(false);
     const [coin, setCoin] = useState(null);
     const [selected, setSelected] = useState(crypto[0]);
+    const [coinAmount, setCoinAmount] = useState();
+    const [price, setPrice] = useState(0);
+    function onChangeAmount(val){
+        setCoinAmount(val);
+        setPrice(val*coin.price);
+    }
+
     if (!coin) {
         function handleSelect(val) {
             setCoin(crypto.find((c) => c.id === val));
@@ -63,6 +69,25 @@ export function AddCryptoModal() {
                 <Button variant='subtle' size="xs" text="Сменить валюту" onclick={() => setCoin(null)}/>
             </Group>
             <Divider my="md"/>
+            <form>
+             <div>
+                 <NumberInput
+                     label="Количество"
+                     withAsterisk
+                     onChange={onChangeAmount}
+                     error={coinAmount < 0 && 'Значение не может быть меньше 0'}
+                     className={cls.amount}
+                 />
+                 <Input.Wrapper label="Стоимость">
+                     <Input readOnly  value={price.toFixed(4)} />
+                 </Input.Wrapper>
+             </div>
+            </form>
+            <Divider my="md"/>
+            <Group justify='end'>
+                <Button text="Добавить" disabled={coinAmount < 0 && true}/>
+
+            </Group>
         </>
     );
 }

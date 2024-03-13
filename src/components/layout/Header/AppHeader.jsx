@@ -18,10 +18,7 @@ export default function AppHeader() {
                     <Modal size={700} opened={opened} onClose={close} title="Добавить криптовалюту">
 
                         <AddCryptoModal />
-                        <Group justify='end'>
-                            <Button text="Закрыть" onclick={close} variant='outline'/>
-                            <Button text="Добавить"/>
-                        </Group>
+
 
                     </Modal>
                 </Group>
