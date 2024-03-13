@@ -8,5 +8,12 @@
   align-items: center;
 }
 .explorer{
-  display: block;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  a{
+    color: var(--mantine-color-dark-7);
+    word-wrap: break-word;
+  }
 }

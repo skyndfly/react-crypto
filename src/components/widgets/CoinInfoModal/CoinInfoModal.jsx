@@ -1,4 +1,4 @@
-import {Group, Image, Title, Divider, Text, Badge, NumberFormatter, rem} from "@mantine/core";
+import {Group, Image, Title, Divider, Text, Badge, NumberFormatter, Spoiler} from "@mantine/core";
 import cls from './CoinInfoModal.module.scss';
 import React from "react";
 import {IconBrandReddit, IconBrandTwitter, IconWorldWww} from "@tabler/icons-react";
@@ -15,7 +15,7 @@ export default function CoinInfoModal({coin}) {
                 </Group>
                 <Text className={cls.stats_text} size="xl">
                     <Badge variant="outline" size="lg" radius="sm" color={coin.price > 0 ? 'teal' : 'red'}>
-                        <NumberFormatter  decimalScale={5} suffix=" $" value={coin.price} thousandSeparator/>
+                        <NumberFormatter decimalScale={5} suffix=" $" value={coin.price} thousandSeparator/>
                     </Badge>
                 </Text>
             </Group>
@@ -42,22 +42,26 @@ export default function CoinInfoModal({coin}) {
             </Group>
 
             <Divider my="md"/>
-            <Group >
-                <a href={coin.redditUrl} target="_blank" >
-                    <Button size="xs" text={<IconBrandReddit/>} variant="light" />
+            <Group>
+                <a href={coin.redditUrl} target="_blank">
+                    <Button size="xs" text={<IconBrandReddit/>} variant="light"/>
                 </a>
                 <a href={coin.websiteUrl} target="_blank">
-                    <Button size="xs" text={<IconWorldWww/>} variant="light" />
+                    <Button size="xs" text={<IconWorldWww/>} variant="light"/>
                 </a>
                 <a href={coin.twitterUrl} target="_blank">
-                    <Button size="xs" text={<IconBrandTwitter/>} variant="light" />
+                    <Button size="xs" text={<IconBrandTwitter/>} variant="light"/>
                 </a>
             </Group>
-            <div>
+            <Divider my="md"/>
+            <Spoiler  maxHeight={0} showLabel="Посмотреть ссылки" hideLabel="Скрыть">
+                <div className={cls.explorer}>
                 {coin.explorers.map((link) => {
-                    return <a className={cls.explorer} key={link} href={link}>{link}</a>;
+                    return <a target="_blank" key={link} href={link}>{link}</a>;
                 })}
-            </div>
+                </div>
+            </Spoiler>
+
         </>
     )
 }
