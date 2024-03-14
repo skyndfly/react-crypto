@@ -14,7 +14,9 @@ export function AddCryptoModal() {
     const [price, setPrice] = useState(0);
     function onChangeAmount(val){
         setCoinAmount(val);
-        setPrice(val*coin.price);
+        if (val > -1){
+            setPrice(val*coin.price);
+        }
     }
 
     if (!coin) {
@@ -78,6 +80,9 @@ export function AddCryptoModal() {
                      error={coinAmount < 0 && 'Значение не может быть меньше 0'}
                      className={cls.amount}
                  />
+                 <Input.Wrapper label="Цена" className={cls.amount}>
+                     <Input readOnly  value={coin.price.toFixed(4)} />
+                 </Input.Wrapper>
                  <Input.Wrapper label="Стоимость">
                      <Input readOnly  value={price.toFixed(4)} />
                  </Input.Wrapper>
@@ -85,7 +90,7 @@ export function AddCryptoModal() {
             </form>
             <Divider my="md"/>
             <Group justify='end'>
-                <Button text="Добавить" disabled={coinAmount < 0 && true}/>
+                <Button text="Добавить" disabled={coinAmount < 1 && true}/>
 
             </Group>
         </>
