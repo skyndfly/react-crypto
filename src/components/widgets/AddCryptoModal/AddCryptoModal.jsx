@@ -4,19 +4,29 @@ import cls from "./AddCryptoModal.module.scss";
 import {IconChevronDown} from "@tabler/icons-react";
 import {useCrypto} from "../../../context/crypto-context.jsx";
 import {Button} from "../../shared/ui/Button/Button.jsx";
-
+import {notifications} from "@mantine/notifications";
+import {  IconCheck } from '@tabler/icons-react';
 export function AddCryptoModal() {
     const {crypto} = useCrypto();
     const [opened, setOpened] = useState(false);
     const [coin, setCoin] = useState(null);
     const [selected, setSelected] = useState(crypto[0]);
-    const [coinAmount, setCoinAmount] = useState();
+    const [coinAmount, setCoinAmount] = useState(0);
     const [price, setPrice] = useState(0);
     function onChangeAmount(val){
         setCoinAmount(val);
         if (val > -1){
             setPrice(val*coin.price);
         }
+    }
+    function handleClickAdd(){
+        notifications.show({
+            icon: <IconCheck/>,
+            color: 'teal',
+            title: 'Транзакция совершена!',
+            message: `Купленно вылюты ${coin.name} на ${price.toFixed(4)}$`,
+        })
+        setCoinAmount(0);
     }
 
     if (!coin) {
@@ -75,6 +85,7 @@ export function AddCryptoModal() {
              <div>
                  <NumberInput
                      label="Количество"
+                     value={coinAmount}
                      withAsterisk
                      onChange={onChangeAmount}
                      error={coinAmount < 0 && 'Значение не может быть меньше 0'}
@@ -90,8 +101,7 @@ export function AddCryptoModal() {
             </form>
             <Divider my="md"/>
             <Group justify='end'>
-                <Button text="Добавить" disabled={coinAmount < 1 && true}/>
-
+                <Button onclick={handleClickAdd} text="Добавить" disabled={coinAmount < 1 && true}/>
             </Group>
         </>
     );
