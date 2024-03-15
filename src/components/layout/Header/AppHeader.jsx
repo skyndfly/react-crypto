@@ -4,7 +4,6 @@ import {Container, Group, Modal} from "@mantine/core";
 import ImageSelect from "../../shared/ui/ImageSelect/ImageSelect.jsx";
 import {AddCryptoModal} from "../../widgets/AddCryptoModal/AddCryptoModal.jsx";
 import {Button} from "../../shared/ui/Button/Button.jsx";
-import {useDisclosure} from "@mantine/hooks";
 
 
 export default function AppHeader() {
