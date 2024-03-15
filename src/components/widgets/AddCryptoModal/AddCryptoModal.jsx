@@ -5,21 +5,24 @@ import {IconChevronDown} from "@tabler/icons-react";
 import {useCrypto} from "../../../context/crypto-context.jsx";
 import {Button} from "../../shared/ui/Button/Button.jsx";
 import {notifications} from "@mantine/notifications";
-import {  IconCheck } from '@tabler/icons-react';
-export function AddCryptoModal() {
+import {IconCheck} from '@tabler/icons-react';
+
+export function AddCryptoModal({onClose}) {
     const {crypto} = useCrypto();
     const [opened, setOpened] = useState(false);
     const [coin, setCoin] = useState(null);
     const [selected, setSelected] = useState(crypto[0]);
     const [coinAmount, setCoinAmount] = useState(0);
     const [price, setPrice] = useState(0);
-    function onChangeAmount(val){
+
+    function onChangeAmount(val) {
         setCoinAmount(val);
-        if (val > -1){
-            setPrice(val*coin.price);
+        if (val > -1) {
+            setPrice(val * coin.price);
         }
     }
-    function handleClickAdd(){
+
+    function handleClickAdd() {
         notifications.show({
             icon: <IconCheck/>,
             color: 'teal',
@@ -82,25 +85,26 @@ export function AddCryptoModal() {
             </Group>
             <Divider my="md"/>
             <form>
-             <div>
-                 <NumberInput
-                     label="Количество"
-                     value={coinAmount}
-                     withAsterisk
-                     onChange={onChangeAmount}
-                     error={coinAmount < 0 && 'Значение не может быть меньше 0'}
-                     className={cls.amount}
-                 />
-                 <Input.Wrapper label="Цена" className={cls.amount}>
-                     <Input readOnly  value={coin.price.toFixed(4)} />
-                 </Input.Wrapper>
-                 <Input.Wrapper label="Стоимость">
-                     <Input readOnly  value={price.toFixed(4)} />
-                 </Input.Wrapper>
-             </div>
+                <div>
+                    <NumberInput
+                        label="Количество"
+                        value={coinAmount}
+                        withAsterisk
+                        onChange={onChangeAmount}
+                        error={coinAmount < 0 && 'Значение не может быть меньше 0'}
+                        className={cls.amount}
+                    />
+                    <Input.Wrapper label="Цена" className={cls.amount}>
+                        <Input readOnly value={coin.price.toFixed(4)}/>
+                    </Input.Wrapper>
+                    <Input.Wrapper label="Стоимость">
+                        <Input readOnly value={price.toFixed(4)}/>
+                    </Input.Wrapper>
+                </div>
             </form>
             <Divider my="md"/>
             <Group justify='end'>
+                <Button text="Закрыть" onclick={onClose} variant='outline'/>
                 <Button onclick={handleClickAdd} text="Добавить" disabled={coinAmount < 1 && true}/>
             </Group>
         </>
