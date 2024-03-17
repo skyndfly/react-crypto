@@ -13,7 +13,7 @@ export function CryptoContextProvider({children}) {
     const [crypto, setCrypto] = useState([]);
     const [assets, setAssets] = useState([]);
 
-    function mapAssets(asset, result) {
+    function mapAssets(assets, result) {
         return assets.map(asset => {
             const coin = result.find(c => c.id === asset.id)
             return {

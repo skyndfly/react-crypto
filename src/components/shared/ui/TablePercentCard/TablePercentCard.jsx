@@ -5,13 +5,15 @@ export function TablePercentCard({elements}){
         <MantineTable.Tr key={element.title}>
             <MantineTable.Td>{element.title}</MantineTable.Td>
             <MantineTable.Td>
-               <Group>
+               <Group justify="flex-end">
                    {element.withTag &&
                        <Badge size="lg" radius="sm" color={element.withTag.grow ? 'teal' : 'red'}>
                            {element.withTag.percent}%<span> *</span>
                        </Badge>
                    }
-                   <NumberFormatter decimalScale={2} suffix=" $" value={element.value} thousandSeparator/>
+                   {!element.isAmount && <NumberFormatter decimalScale={2} suffix=" $" value={element.value} thousandSeparator/>}
+                   {element.isAmount && element.value}
+
                </Group>
             </MantineTable.Td>
         </MantineTable.Tr>

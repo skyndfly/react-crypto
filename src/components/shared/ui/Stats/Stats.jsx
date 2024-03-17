@@ -52,7 +52,7 @@ export default function Stats() {
                         {
                             title: "Количество",
                             value: stat.amount,
-                            isPlain: true
+                            isAmount: true
                         }
                     ]}
                 />
