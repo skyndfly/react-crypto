@@ -8,7 +8,7 @@ import {notifications} from "@mantine/notifications";
 import {IconCheck} from '@tabler/icons-react';
 
 export function AddCryptoModal({onClose}) {
-    const {crypto} = useCrypto();
+    const {crypto, addAsset} = useCrypto();
     const [opened, setOpened] = useState(false);
     const [coin, setCoin] = useState(null);
     const [selected, setSelected] = useState(crypto[0]);
@@ -29,6 +29,13 @@ export function AddCryptoModal({onClose}) {
             title: 'Транзакция совершена!',
             message: `Купленно вылюты ${coin.name} на ${price.toFixed(4)}$`,
         })
+        const newAsset = {
+            id: coin.id,
+            amount: coinAmount,
+            price: price,
+            date: new Date()
+        }
+        addAsset(newAsset)
         setCoinAmount(0);
     }
 
