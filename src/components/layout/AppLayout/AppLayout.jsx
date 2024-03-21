@@ -1,7 +1,7 @@
 import AppHeader from "../Header/AppHeader.jsx";
 import {Spin} from "antd";
 import AppSider from "../AppSider/AppSider.jsx";
-import AppContent from "../AppContent.jsx";
+import AppContent from "../AppContent/AppContent.jsx";
 import React, {useContext} from "react";
 import CryptoContext from "../../../context/crypto-context.jsx";
 import {Container, Grid} from "@mantine/core";
